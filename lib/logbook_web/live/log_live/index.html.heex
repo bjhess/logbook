@@ -1,0 +1,22 @@
+<h1>Logbook</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.log_index_path(@socket, :index)}>
+    <.live_component
+      module={LogbookWeb.LogLive.FormComponent}
+      id={@log.id || :new}
+      title={@page_title}
+      action={@live_action}
+      log={@log}
+      return_to={Routes.log_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<div id="logs" phx-update="prepend">
+  <%= for log <- @logs do %>
+    <%= live_component @socket, LogbookWeb.LogLive.LogComponent, id: log.id, log: log %>
+  <% end %>
+</div>
+
+<span><%= live_patch "New Log", to: Routes.log_index_path(@socket, :new) %></span>
