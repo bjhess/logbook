@@ -50,6 +50,10 @@ defmodule LogbookWeb.LogLive.Index do
     {:noreply, update(socket, :logs, fn logs -> [log | logs ] end)}
   end
 
+  def handle_info({:log_deleted, log}, socket) do
+    {:noreply, update(socket, :logs, fn logs -> [log | logs ] end)}
+  end
+
   defp list_logs do
     Book.list_logs()
   end

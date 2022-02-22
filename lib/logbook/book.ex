@@ -89,6 +89,7 @@ defmodule Logbook.Book do
   """
   def delete_log(%Log{} = log) do
     Repo.delete(log)
+    |> broadcast(:log_deleted)
   end
 
   @doc """

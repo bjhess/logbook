@@ -1,5 +1,13 @@
 # Logbook
 
+## Elixir setup
+
+* [Install with homebrew](https://elixir-lang.org/install.html#macos)
+* Open `psql` console
+* Run `CREATE ROLE postgres LOGIN CREATEDB;`
+
+## Getting it up
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
