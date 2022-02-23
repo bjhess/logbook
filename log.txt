@@ -1,0 +1,18 @@
+[2022-02-23]
+Going to start going through the book from Phoenix 1.14 to build things out.
+
+Process is about Elixir processes, not operating system processes. [8]
+Functions, rather than inheritance, help you roll your app into piplelines, where each function feeds into the next. Like building a shopping list for your requests. [10]
+config/dev.exs has database evironment for dev local. [23]
+Plug library is a specification for building applications that connect to the web. Each plug consumes and produces a common data structure called Plug.Conn. Remember, that struct represents the whole universe for a given request, because it has things that web applications need: the inbound request, the protocol, the parsed parameters, and so on. [30]
+Think of each individual plug as a function that takes a conn, does something small, and returns a slightly changed conn. The web server provides the initial data for our request, and then Phoenix calls one plug after another. Each plug can transform the conn in some small way until you eventually send a response back to the user. [30]
+Plugs are functions. Your web applications are pipelines of plugs. [31]
+.ex files are compiled to .beam files to run on Erlang virtual machine. .exs files are Elixir scripts, compiled to memory each time they are run. Those are good for quick-changing scripts or standalone devlopment-time tasks. [32]
+mix.exs seems to be like the Gemfile in Ruby. mix.lock seems to be Gemfile.lock [32]
+lib/hello/application.ex has support for starting, stopping, and supervising each application. [32]
+environments are in config. config.exs is the master, application-wide config. MIX_ENV switches between environments. [33]
+lib/logbook_web/endpoint.ex has a bunch of plugs that do typical things webapps do. [34]
+
+
+[2022-02-22]
+Set up with guides and McCord's building a twitter app youtube video
