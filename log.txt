@@ -1,4 +1,30 @@
 [2022-02-28]
+Pipe dart css to tailwind so both can process:
+
+https://elixirforum.com/t/dartsass-an-installer-for-sass/41371/28
+
+Then configure dart_sass to process app.scss and drop the result in an intermediate file named app.tailwind.css for example:
+
+config :dart_sass,
+  version: "1.49.0",
+  default: [
+    args: ~w(css/app.scss ../priv/static/assets/app.tailwind.css),
+    cd: Path.expand("../assets", __DIR__)
+  ]
+Finally, configure tailwind to use the DartSass output file as its input and spit out the final output in app.css:
+
+config :tailwind,
+  version: "3.0.18",
+  default: [
+    args: ~w(
+      --config=tailwind.config.js
+      --input=../priv/static/assets/app.tailwind.css
+      --output=../priv/static/assets/app.css
+    ),
+    cd: Path.expand("../assets", __DIR__)
+  ]
+
+
 Add tailwind css to project:
 https://github.com/phoenixframework/tailwind
 

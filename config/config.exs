@@ -43,7 +43,7 @@ config :esbuild,
 config :dart_sass,
   version: "1.49.0",
   default: [
-    args: ~w(css/app.scss ../priv/static/assets/app.css),
+    args: ~w(css/app.scss ../priv/static/assets/app.tailwind.css),
     cd: Path.expand("../assets", __DIR__)
   ]
 
@@ -53,7 +53,7 @@ config :tailwind,
   default: [
     args: ~w(
       --config=tailwind.config.js
-      --input=css/app.css
+      --input=../priv/static/assets/app.tailwind.css
       --output=../priv/static/assets/app.css
     ),
     cd: Path.expand("../assets", __DIR__)
