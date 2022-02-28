@@ -78,6 +78,8 @@ defmodule LogbookWeb.Router do
     get "/log_makers/settings", UserSettingsController, :edit
     put "/log_makers/settings", UserSettingsController, :update
     get "/log_makers/settings/confirm_email/:token", UserSettingsController, :confirm_email
+
+    resources "/logs", LogController
   end
 
   scope "/", LogbookWeb do

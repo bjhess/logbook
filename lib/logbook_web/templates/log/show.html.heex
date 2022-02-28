@@ -1,0 +1,13 @@
+<h1>Show Log</h1>
+
+<ul>
+
+  <li>
+    <strong>Body:</strong>
+    <%= @log.body %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.log_path(@conn, :edit, @log) %></span> |
+<span><%= link "Back", to: Routes.log_path(@conn, :index) %></span>
