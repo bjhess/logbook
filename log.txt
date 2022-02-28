@@ -1,4 +1,7 @@
 [2022-02-28]
+Add dartsass to project:
+https://github.com/CargoSense/dart_sass#adding-to-phoenix
+
 Rebuilding from scratch. Using the built in authentication generator as well as knowledge gained from working on the official book. This version won't have live view out of the box, but that's not so necessary anyway.
 
 Generated user auth as of Phoenix 1.6.6: https://hexdocs.pm/phoenix/mix_phx_gen_auth.html#content
