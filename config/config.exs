@@ -39,11 +39,23 @@ config :esbuild,
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
 
-# User dart_sass for css
+# Use dart_sass for css
 config :dart_sass,
   version: "1.49.0",
   default: [
     args: ~w(css/app.scss ../priv/static/assets/app.css),
+    cd: Path.expand("../assets", __DIR__)
+  ]
+
+# Use tailwind css
+config :tailwind,
+  version: "3.0.10",
+  default: [
+    args: ~w(
+      --config=tailwind.config.js
+      --input=css/app.css
+      --output=../priv/static/assets/app.css
+    ),
     cd: Path.expand("../assets", __DIR__)
   ]
 

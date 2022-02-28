@@ -1,4 +1,9 @@
 [2022-02-28]
+Add tailwind css to project:
+https://github.com/phoenixframework/tailwind
+
+Note: The stand-alone Tailwind client bundles first-class tailwind packages within the precompiled executable. For third-party Tailwind plugin support, the node package must be used. See the tailwind nodejs installation instructions if you require third-party plugin support.
+
 Add dartsass to project:
 https://github.com/CargoSense/dart_sass#adding-to-phoenix
 
