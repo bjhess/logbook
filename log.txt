@@ -11,7 +11,24 @@ Plugs are functions. Your web applications are pipelines of plugs. [31]
 mix.exs seems to be like the Gemfile in Ruby. mix.lock seems to be Gemfile.lock [32]
 lib/hello/application.ex has support for starting, stopping, and supervising each application. [32]
 environments are in config. config.exs is the master, application-wide config. MIX_ENV switches between environments. [33]
-lib/logbook_web/endpoint.ex has a bunch of plugs that do typical things webapps do. [34]
+lib/logbook_web/endpoint.ex has a bunch of plugs that do typical things webapps do. [34] I suspect I'll need to know more about this at some point:
+
+  # Serve at "/" the static files from "priv/static" directory.
+  #
+  # You should set gzip to true if you are running phx.digest
+  # when deploying your static files in production.
+  plug Plug.Static,
+    at: "/",
+    from: :logbook,
+    gzip: false,
+    only: ~w(assets fonts images favicon.ico robots.txt)
+
+Although applications usually have a single endpoint, Phoenix doesn’t limit the number of endpoints your application can have. For example, you could have your main application endpoint running on port 80 (HTTP) and 443 (HTTPS), as well as a specific admin endpoint running on a special port—let’s say 8443 (HTTPS)—with specific characteristics and security constraints.
+Alternatively, we could break those endpoints into separate applications but still run them side by side. You’ll explore this later on when learning about umbrella projects. [35]
+
+Phoenix separates views from templates. The template seems to be what I'd think of as a view in Rails. The view must be like...helpers? [38]
+Context seems to be the general idea of MVC models. Context doesn't know about the controller, and the controller doesn't know about the business rules. [43]
+You can run a Phoenix server inside iex shell with iex -S mix phx.server [44]
 
 
 [2022-02-22]
