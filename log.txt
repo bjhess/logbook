@@ -1,4 +1,17 @@
 [2022-02-28]
+fly.io deployment:
+
+> View logs
+$ flyctl --app loggylog logs
+
+> Deploy an image
+$ flyctl --app loggylog deploy .
+
+> Set secrets
+$ flyctl --app loggylog secrets set [name]=[value]
+
+
+
 Pipe dart css to tailwind so both can process:
 
 https://elixirforum.com/t/dartsass-an-installer-for-sass/41371/28
@@ -23,6 +36,14 @@ config :tailwind,
     ),
     cd: Path.expand("../assets", __DIR__)
   ]
+
+Figured out Tailwind imports and I think it's running:
+
+https://tailwindcss.com/docs/guides/phoenix in app.scss
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
 Add tailwind css to project:
