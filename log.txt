@@ -1,3 +1,34 @@
+[2022-02-28]
+Rebuilding from scratch. Using the built in authentication generator as well as knowledge gained from working on the official book. This version won't have live view out of the box, but that's not so necessary anyway.
+
+Generated user auth as of Phoenix 1.6.6: https://hexdocs.pm/phoenix/mix_phx_gen_auth.html#content
+https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Auth.html
+
+User authentication things to do after generation of code:
+* Remove confirmation mechanism if prefer not to have it
+* Make sure error messages do not notify user that email is already registered
+
+Generated code...
+
+In an app named Demo which had mix phx.gen.auth Accounts User users run on it, you will find a module named DemoWeb.UserAuth with plugs such as:
+
+* fetch_current_user - fetches the current user information if available
+* require_authenticated_user - must be invoked after fetch_current_user and requires that a current user exists and is authenticated
+* redirect_if_user_is_authenticated - used for the few pages that must not be available to authenticated users
+
+Confirmation
+
+The generated functionality ships with an account confirmation mechanism, where users have to confirm their account, typically by email. However, the generated code does not forbid users from using the application if their accounts have not yet been confirmed. You can add this functionality by customizing the require_authenticated_user in the Auth module to check for the confirmed_at field (and any other property you desire).
+HOW DO WE DISABLE THIS IF WE WANT?
+
+Tracking sessions
+
+All sessions and tokens are tracked in a separate table. This allows you to track how many sessions are active for each account. You could even expose this information to users if desired.
+
+Note that whenever the password changes (either via reset password or directly), all tokens are deleted and the user has to log in again on all devices.
+
+For instance, when you register an account, if the email is already registered, the code will notify the user the email is already registered.
+
 [2022-02-23]
 Going to start going through the book from Phoenix 1.14 to build things out.
 
