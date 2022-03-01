@@ -1,3 +1,10 @@
+[2022-03-01]
+Try to diagram our categories and tags with mermaid
+https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/
+https://github.com/mermaid-js/mermaid#class-diagram-docs---live-editor
+https://mermaid-js.github.io/mermaid/#/classDiagram
+
+
 [2022-02-28]
 fly.io deployment:
 
