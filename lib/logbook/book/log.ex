@@ -4,7 +4,8 @@ defmodule Logbook.Book.Log do
 
   schema "logs" do
     field :body, :string
-    field :user_id, :id
+
+    belongs_to :user, Logbook.Accounts.User
 
     timestamps()
   end
