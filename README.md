@@ -58,11 +58,9 @@ class Tagging {
     tag_id
 }
 
-Log --o Tagging
-Tag --o Tagging
-User --o Category
+User --o Category --o Log
 User --o Tag
-Category --o Log
+Log --o Tagging o-- Tag
 ```
 
 ## Learn more about Phoenix
