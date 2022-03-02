@@ -6,6 +6,8 @@ defmodule Logbook.Book.Log do
     field :body, :string
 
     belongs_to :user, Logbook.Accounts.User
+    has_many :taggings, Logbook.Book.Tagging
+    has_many :tags, through: [:taggings, :tag]
 
     timestamps()
   end
