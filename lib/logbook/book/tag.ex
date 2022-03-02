@@ -4,7 +4,7 @@ defmodule Logbook.Book.Tag do
 
   schema "tags" do
     field :name, :string
-    field :user_id, :id
+    belongs_to :user, Logbook.Accounts.User
 
     timestamps()
   end
