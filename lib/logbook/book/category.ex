@@ -1,5 +1,6 @@
 defmodule Logbook.Book.Category do
   use Ecto.Schema
+  import Ecto.Query
   import Ecto.Changeset
 
   schema "categories" do
