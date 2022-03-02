@@ -5,6 +5,9 @@ Using these examples:
 * https://minhajuddin.com/2020/05/03/many-to-many-relationships-in-ecto-and-phoenix-for-products-and-tags/
 * https://fullstackphoenix.com/tutorials/add-tags-with-ecto-has-many-through-in-phoenix-tagging-part-1
 
+TIL: Phoenix doesn't default migrate references columns to null: false. You have to explicitly set that.
+Looks like they might have had it way back when, but since reverted it: https://github.com/phoenixframework/phoenix/issues/1118
+
 [2022-03-01]
 Try to diagram our categories and tags with mermaid
 https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/

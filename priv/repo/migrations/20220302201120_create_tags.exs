@@ -4,7 +4,7 @@ defmodule Logbook.Repo.Migrations.CreateTags do
   def change do
     create table(:tags) do
       add :name, :citext, null: false
-      add :user_id, references(:users, on_delete: :nothing)
+      add :user_id, references(:users, on_delete: :nothing), null: false
 
       timestamps()
     end
