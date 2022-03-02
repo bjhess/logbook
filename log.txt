@@ -8,6 +8,17 @@ Using these examples:
 TIL: Phoenix doesn't default migrate references columns to null: false. You have to explicitly set that.
 Looks like they might have had it way back when, but since reverted it: https://github.com/phoenixframework/phoenix/issues/1118
 
+Deployed completely fresh. Got told a secret wasn't in place, so updated:
+https://fly.io/docs/reference/secrets/
+flyctl secrets set SECRET_KEY_BASE=blahblahblah
+
+Things then kept failing to deploy with
+Failed due to unhealthy allocations
+
+So I tried reverting the commit that had the first deployment figuring some files hanging around in the repo are confusing things.
+
+Then it deployed well, but I never could name the app what I wanted. Had to let it give a unique name by the system.
+
 [2022-03-01]
 Try to diagram our categories and tags with mermaid
 https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/
