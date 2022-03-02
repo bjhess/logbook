@@ -1,1 +1,0 @@
-call "%~dp0\logbook" eval Logbook.Release.migrate
