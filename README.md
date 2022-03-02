@@ -43,11 +43,6 @@ class Log {
     body
     category_id
 }
-class Category {
-    id
-    name
-    user_id
-}
 class Tag {
     id
     name
@@ -58,7 +53,6 @@ class Tagging {
     tag_id
 }
 
-User --o Category --o Log
 User --o Tag
 Log --o Tagging o-- Tag
 ```
