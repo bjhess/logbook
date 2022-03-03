@@ -41,6 +41,7 @@ class User {
 class Log {
     id
     body
+    user_id
 }
 class Tag {
     id
