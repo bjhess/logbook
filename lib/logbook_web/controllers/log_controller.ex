@@ -4,18 +4,25 @@ defmodule LogbookWeb.LogController do
   alias Logbook.Book
   alias Logbook.Book.Log
 
-  def index(conn, _params) do
-    logs = Book.list_logs()
+  # p114 in Programming Phoenix, this adds current_user to all
+  # action signatures in this controller module.
+  def action(conn, _) do
+    args = [conn, conn.params, conn.assigns.current_user]
+    apply(__MODULE__, action_name(conn), args)
+  end
+
+  def index(conn, _params, current_user) do
+    logs = Book.list_user_logs(current_user)
     render(conn, "index.html", logs: logs)
   end
 
-  def new(conn, _params) do
+  def new(conn, _params, _current_user) do
     changeset = Book.change_log(%Log{})
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"log" => log_params}) do
-    case Book.create_log(log_params) do
+  def create(conn, %{"log" => log_params}, current_user) do
+    case Book.create_log(current_user, log_params) do
       {:ok, log} ->
         conn
         |> put_flash(:info, "Log created successfully.")
@@ -26,19 +33,19 @@ defmodule LogbookWeb.LogController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    log = Book.get_log!(id)
+  def show(conn, %{"id" => id}, current_user) do
+    log = Book.get_user_log!(current_user, id)
     render(conn, "show.html", log: log)
   end
 
-  def edit(conn, %{"id" => id}) do
-    log = Book.get_log!(id)
+  def edit(conn, %{"id" => id}, current_user) do
+    log = Book.get_user_log!(current_user, id)
     changeset = Book.change_log(log)
     render(conn, "edit.html", log: log, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "log" => log_params}) do
-    log = Book.get_log!(id)
+  def update(conn, %{"id" => id, "log" => log_params}, current_user) do
+    log = Book.get_user_log!(current_user, id)
 
     case Book.update_log(log, log_params) do
       {:ok, log} ->
@@ -51,8 +58,8 @@ defmodule LogbookWeb.LogController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    log = Book.get_log!(id)
+  def delete(conn, %{"id" => id}, current_user) do
+    log = Book.get_user_log!(current_user, id)
     {:ok, _log} = Book.delete_log(log)
 
     conn
