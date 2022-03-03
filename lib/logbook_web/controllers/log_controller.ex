@@ -12,8 +12,9 @@ defmodule LogbookWeb.LogController do
   end
 
   def index(conn, _params, current_user) do
+    changeset = Book.change_log(%Log{})
     logs = Book.list_user_logs(current_user)
-    render(conn, "index.html", logs: logs)
+    render(conn, "index.html", logs: logs, changeset: changeset)
   end
 
   def new(conn, _params, _current_user) do
@@ -26,7 +27,7 @@ defmodule LogbookWeb.LogController do
       {:ok, log} ->
         conn
         |> put_flash(:info, "Log created successfully.")
-        |> redirect(to: Routes.log_path(conn, :show, log))
+        |> redirect(to: Routes.log_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)

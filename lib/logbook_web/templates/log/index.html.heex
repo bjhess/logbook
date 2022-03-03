@@ -1,6 +1,5 @@
 <section id="main-log-form">
-  <textarea placeholder="Log hogging!"></textarea>
-  <input type="submit" value="Hog it" />
+  <%= render "form.html", Map.put(assigns, :action, Routes.log_path(@conn, :create)) %>
 </section>
 
 <section id="log-hogs">
