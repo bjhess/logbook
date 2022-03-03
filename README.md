@@ -54,7 +54,8 @@ class Tagging {
 
 User --o Log
 User --o Tag
-Log --o Tagging o-- Tag
+Log --o Tagging
+Tag --o Tagging
 ```
 
 ## Learn more about Phoenix
