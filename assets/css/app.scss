@@ -3,6 +3,471 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@import "https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,600;1,400&display=swap";
+
+@mixin transition($tr) {
+  -webkit-transition: $tr;
+  -moz-transition: $tr;
+  transition: $tr;
+}
+
+/* reset */
+html {margin:0;padding:0;border:0;}
+body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section {margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+ul {list-style: none}
+
+
+:root {
+  --avatar-width-M: 40px;
+  --color-white: #fff;
+  --color-fuchsia: rgb(212, 54, 118);
+  --color-pink: rgb(255, 181, 252);
+  --color-bg: rgb(249, 250, 246);
+  --color-bg-nav: rgb(28, 28, 28);
+  --color-bg-cal-grid: rgb(252, 253, 254);
+  --color-bg-cal-grid-hover: rgb(241, 255, 241);
+  --color-bg-cal-grid-checked: rgb(225, 253, 226);
+  --color-bg-cal-grid-missed: rgb(232, 233, 228);
+  --color-bg-cal-grid-today: rgb(225, 253, 226);
+  --color-bg-cal-grid-outrange: var(--color-bg-cal-div);
+  --color-bg-dark: rgb(27, 17, 74);
+  --color-btn-bg-default: rgb(40, 40, 40);
+  --color-btn-bg-hover: rgb(255, 65, 142);
+  --color-btn-border: rgb(0, 0, 0);
+  --color-highlight-today: var(--color-fuchsia);
+  --color-form-border: #cccccc;
+  --color-post-border: #ddd;
+  --color-hr: #ccc;
+  --color-txt: rgb(35, 28, 51);
+  --color-txt-link: var(--color-txt);
+  --color-txt-meta: #888;
+  --color-txt-nav: var(--color-white);
+  --color-txt-light: rgb(230, 228, 240);
+  --color-txt-meta-light: rgb(134, 125, 168);
+  --color-txt-error: rgb(200, 18, 48);
+  --color-border-log: rgb(230, 228, 240);
+  --color-border-dark: rgb(12, 7, 31);
+  --font-size-base: 10px;
+  --font-size-XS: 1.1rem;
+  --font-size-S: 1.1rem;
+  --font-size-M: 1.3rem;
+  --font-size-L: 2rem;
+  --font-size-XL: 2rem;
+  --font-size-XXL: 3rem;
+  --font-size-XXXL: 2.7rem;
+  --font-size-today: 1rem;
+  --font-size-nav: var(--font-size-S);
+  --padding-content: 10px;
+  --post-padding: 1.2em;
+  --post-margin: 1.2em;
+  --width-login: 30rem;
+  --width-comments: 54rem;
+  --width-max-content: 600px;
+  --width-max-content-narrow: 600px;
+  --width-max-login: 400px;
+  --padding-bottom: 4rem;
+  --padding-content: 8px;
+  --padding-updates: 16px;
+}
+
+@media (min-width: 800px) {
+  :root {
+    --font-size-XS: 1.1rem;
+    --font-size-S: 1.2rem;
+    --font-size-M: 1.5rem;
+    --font-size-L: 2rem;
+    --font-size-XL: 2.6rem;
+    --font-size-XXL: 3.6rem;
+    --font-size-XXXL: 4.6rem;
+    --font-size-today: var(--font-size-S);
+  }
+}
+
+html {
+  font-size: var(--font-size-base);
+}
+
+body {
+  font-family: 'Roboto Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--color-bg);
+  color: var(--color-txt-link);
+  font-size: var(--font-size-M);
+  font-weight: 400;
+  line-height: 1.5em;
+}
+
+a {
+  color: var(--color-txt-link);
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: 600;
+}
+
+.button, button, input[type=button], input[type=submit], input[type=reset] {
+  background-color: var(--color-btn-bg-default);
+  border: 1px solid var(--color-btn-border);
+  border-radius: 1.5em;
+  color: var(--color-white);
+  font-weight: 700;
+  line-height: 1em;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  &:hover {
+    background-color: var(--color-btn-bg-hover);
+  }
+}
+
+input[type="text"], textarea {
+  border: 1px solid var(--color-form-border);
+  border-radius: 3px;
+  margin: 0.5em 0;
+  padding: 0.5em;
+  width: 90%;
+}
+
+.input-full-width {
+  width: 95%
+}
+
+input[type=button]:disabled, input[type=submit]:disabled {
+  opacity: 35%;
+}
+
+label {
+  font-size: var(--font-size-S);
+  font-weight: bold;
+  display: block;
+}
+
+.buttons {
+  margin: 1em 0;
+}
+
+.content-wrapper {
+  max-width: var(--width-max-content);
+  margin: 0 auto;
+  padding: var(--padding-content);
+}
+
+.simple-nav {
+  background-color: var(--color-bg-nav);
+  color: var(--color-txt-nav);
+  width: 100%;
+  ul {
+    display: flex;
+    font-size: var(--font-size-nav);
+    line-height: 1.4em;
+    max-width: var(--width-max-content);
+    margin: 0 auto;
+    padding: 14px var(--padding-content);
+    h2 {
+      font-size: var(--font-size-nav);
+      text-align: left;
+      margin: 0;
+    }
+    a {
+      color: var(--color-txt-nav);
+      text-decoration: none;
+      &:hover {
+        background-color: var(--color-bg);
+        color: var(--color-txt);
+      }
+    }
+    li {
+      margin-right: 0.5em;
+    }
+    li:first-child {
+      flex: auto;
+    }
+    li:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+h1 {
+  font-size: var(--font-size-XXL);
+  font-weight: 800;
+  line-height: 1em;
+  margin: 1em auto;
+  text-align: center;
+  &.special {
+    font-family: 'Playfair Display SC';
+    font-size: var(--font-size-XXXL);
+    font-style: italic;
+    line-height: 1.2em;
+    text-transform: uppercase;
+    width: 80%;
+  }
+}
+
+h2 {
+  font-size: var(--font-size-XL);
+  font-weight: 700;
+  margin: 1em 0;
+}
+
+.noshow {
+  display: none;
+}
+
+.avatar {
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  display: block;
+  overflow: hidden;
+  width: var(--avatar-width-M);
+  height: var(--avatar-width-M);
+  img {
+    width: 100%;
+  }
+}
+
+
+#main-log-form {
+  border-bottom: 1px solid #ccc;
+  padding: 1em 0;
+  textarea {
+    height: 4em;
+  }
+}
+
+#log-hogs {
+  margin: 0;
+  .each-log {
+    padding: 1em 0;
+    border-bottom: 1px solid var(--color-border-log);
+  }
+  .log-meta {
+    color: var(--color-txt-meta);
+    font-size: var(--font-size-S);
+    margin-top: 0.4em;
+  }
+}
+
+
+/*** Logbook styles ***/
+.update-stream {
+  background-color: var(--color-bg-dark);
+  color: var(--color-txt-light);
+  margin: 0;
+  padding: 2em 0 4em 0;
+  border-top: 1px solid var(--color-border-dark);
+  .content-wrapper {
+    max-width: var(--width-max-content-narrow);
+  }
+  .update-nav {
+    align-items: center;
+    display: flex;
+    border-bottom: 1px solid var(--color-border-light);
+    padding: 8px var(--padding-updates);
+    .button {
+      font-size: var(--font-size-XS);
+    }
+  }
+  h2 {
+    font-size: var(--font-size-L);
+    flex: auto;
+    margin: 0;
+    text-align: left;
+  }
+  .an-update, .update-form {
+    margin: 0 auto;
+    padding: var(--padding-updates);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+  textarea {
+    height: 4em;
+  }
+  a {
+    color: var(--color-txt-light);
+  }
+  .an-update {
+    overflow: auto;
+    position: relative;
+    .update-meta {
+      color: var(--color-txt-meta-light);
+      font-size: var(--font-size-S);
+    }
+    .floating-actions {
+      font-size: var(--font-size-XS);
+      position: absolute;
+      top: 1em;
+      right: var(--padding-updates);
+      a {
+        color: var(--color-txt-meta-light);
+      }
+    }
+    .update-msg {
+      ul, ol {
+        padding: 0;
+        margin: 0.5em 0 0.5em 0;
+        li {
+          display: list-item;
+          margin: 0.2em 0 0 2em;
+        }
+      }
+      ul {
+        list-style: disc outside;
+      }
+      p {
+        margin: 1em 0 0 0;
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+    .log-attachments {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0;
+      img {
+        align-self: start;
+        max-width: 100%;
+        margin: 10px 10px 10px 0;
+      }
+    }
+  }
+}
+
+#log-in-form {
+  max-width: var(--width-max-login);
+  text-align: center;
+  h1 {
+    margin: 1em 0 0.3em 0;
+    font-size: 200%;
+  }
+  label {
+    font-size: var(--font-size-M);
+  }
+  input[type="text"], input[type="email"], input[type="password"] {
+    border: 1px solid var(--color-form-border);
+    border-radius: 3px;
+    font-size: 110%;
+    font-weight: 700;
+    margin: 0.3em 0;
+    padding: 0.5em;
+    width: 90%;
+  }
+  input[type="submit"] {
+    font-size: 120%;
+    margin: 0.5em 0;
+  }
+  .sentence-form {
+    input[type="text"], textarea {
+      font-size: 100%;
+      width: 15em;
+    }
+  }
+}
+
+.edit-profile {
+  max-width: var(--width-max-content-narrow);
+  input[type="text"], textarea {
+    margin: 0.1rem 0 0.2rem 0;
+  }
+}
+
+.form-node {
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.explanation {
+  color: var(--color-txt-meta);
+  display: block;
+  font-size: var(--font-size-S);
+  line-height: 1.4em;
+}
+
+.error-msg {
+  color: var(--color-txt-error);
+  display: block;
+  font-size: var(--font-size-S);
+  font-weight: 700;
+  line-height: 1.4em;
+}
+
+.special-message {
+  background-color: #74ffb2;
+  border: 3px solid #489f6f;
+  border-radius: 8px;
+  color: #214933;
+  font-weight: bold;
+  font-size: var(--font-size-S);
+  line-height: 1.4em;
+  margin: 2em auto;
+  padding: 1em;
+  max-width: 90%;
+}
+
+.shake-shack {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+
+@media (min-width: 800px) {
+  .calendar-tbl {
+    grid-auto-rows: 95px;
+    a, div {
+      padding: 10px;
+      &.today {
+        h2 {
+          font-weight: 500;
+          margin: -4px -6px 0 0;
+          width: 20px;
+          height: 20px;
+          line-height: 20px;
+        }
+        .fas {
+          margin-top: -4px;
+        }
+      }
+    }
+    .fas {
+      font-size: 3em;
+      padding-top: 5px;
+      margin-top: -2px;
+    }
+  }
+  .cheer-cheer {
+    width: 400px;
+    ul {
+      li {
+        font-size: 1.2em;
+      }
+    }
+  }
+}
+
+
+
+/**** BH: THESE WERE IN HERE FROM PHOENIX AND IT SEEMS MOST SHOULD STAY AND BE ADJUSTED? ****/
 /* Alerts and form errors used by phx.new */
 .alert {
   padding: 15px;
