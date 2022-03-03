@@ -1,6 +1,7 @@
 defmodule Logbook.Book.Log do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
 
   schema "logs" do
     field :body, :string
@@ -18,4 +19,10 @@ defmodule Logbook.Book.Log do
     |> cast(attrs, [:body])
     |> validate_required([:body])
   end
+
+
+  def reverse_chronological(query) do
+    from l in query, order_by: [desc: l.inserted_at]
+  end
+
 end

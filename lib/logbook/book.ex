@@ -72,6 +72,13 @@ defmodule Logbook.Book do
     Log.changeset(log, attrs)
   end
 
+  def list_user_reverse_chronological_logs(%Accounts.User{} = user) do
+    Log
+    |> user_logs_query(user)
+    |> Log.reverse_chronological()
+    |> Repo.all()
+  end
+
   def list_user_logs(%Accounts.User{} = user) do
     Log
     |> user_logs_query(user)

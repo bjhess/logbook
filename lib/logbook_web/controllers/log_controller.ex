@@ -13,7 +13,7 @@ defmodule LogbookWeb.LogController do
 
   def index(conn, _params, current_user) do
     changeset = Book.change_log(%Log{})
-    logs = Book.list_user_logs(current_user)
+    logs = Book.list_user_reverse_chronological_logs(current_user)
     render(conn, "index.html", logs: logs, changeset: changeset)
   end
 
@@ -24,7 +24,7 @@ defmodule LogbookWeb.LogController do
 
   def create(conn, %{"log" => log_params}, current_user) do
     case Book.create_log(current_user, log_params) do
-      {:ok, log} ->
+      {:ok, _log} ->
         conn
         |> put_flash(:info, "Log created successfully.")
         |> redirect(to: Routes.log_path(conn, :index))
