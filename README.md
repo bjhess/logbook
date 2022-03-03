@@ -41,7 +41,6 @@ class User {
 class Log {
     id
     body
-    category_id
 }
 class Tag {
     id
@@ -53,6 +52,7 @@ class Tagging {
     tag_id
 }
 
+User --o Log
 User --o Tag
 Log --o Tagging o-- Tag
 ```
