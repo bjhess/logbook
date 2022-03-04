@@ -1,3 +1,104 @@
+[2022-03-04]
+Started figuring out my setup in VS code
+https://elixirforum.com/t/configuring-vscode-to-use-with-elixir-and-phoenix-templates/30053/7
+https://elixirforum.com/t/poll-what-vscode-theme-do-you-use/29186/18
+
+Extensions:
+* ElixirLS
+* Phoenix Framework
+* Emmmet (built in)
+* Dark+ Elixir theme
+* Beautify
+* Multiple cursor case preserve # When multi-select to replace words, preserves casing
+
+Theme:
+dark+(elixir)
+Was using Railscasts Renewed, but it was really hard to see the tabs in the UI with it.
+
+Might consider EEx snippets extension
+
+settings.json adjustments:
+
+{
+  "workbench.colorTheme": "Railscasts Renewed",
+  "telemetry.telemetryLevel": "off",
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "editor.insertSpaces": false,
+  // "files.associations": {
+  //   "*.eex": "eex",
+  //   "*.leex": "html-eex"
+  // },
+  "emmet.includeLanguages": {
+    "html-eex": "html",
+    "phoenix-heex": "html"
+  },
+  // "[phoenix-heex]": {
+  //   "editor.defaultFormatter": "RoyalMist.vscode-eex-format"
+  // },
+  // "tailwindCSS.includeLanguages": {
+  //   "phoenix-heex": "html"
+  //   "html-eex": "html"
+  // },
+  "editor.formatOnSave": true,
+  "beautify.language": {
+    "js": {
+      "type": [
+        "javascript",
+        "json",
+        "jsonc"
+      ],
+      "filename": [
+        ".jshintrc",
+        ".jsbeautifyrc"
+      ]
+    },
+    "css": [
+      "css",
+      "less",
+      "scss"
+    ],
+    "html": [
+      "htm",
+      "html",
+      "html-eex",
+      "phoenix-heex"
+    ]
+  }
+}
+
+And keybindings.js:
+
+[
+	{
+		"key": "alt+d",
+		"command": "editor.action.revealDefinition",
+		"when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+	},
+	{
+		"key": "ctrl+cmd+c",
+		"command": "toggleSearchEditorCaseSensitive",
+		"when": "inSearchEditor && searchInputBoxFocus"
+	},
+	{
+		"key": "ctrl+`",
+		"command": "workbench.action.terminal.focus"
+	},
+	{
+		"key": "ctrl+`",
+		"command": "workbench.action.focusActiveEditorGroup",
+		"when": "terminalFocus"
+	},
+	{
+		"key": "cmd+k cmd+p",
+		"command": "workbench.files.action.showActiveFileInExplorer"
+	}
+]
+]
+
+
 [2022-03-02]
 Added Categories and then removed them.
 Just going with Tags now.
